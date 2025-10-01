@@ -8,12 +8,12 @@ import numpy as np
 from io import BytesIO
 
 # Load the pre-trained model
-model = load_model('final_model.h5',compile=False)
+model = load_model('final_model.h5',compile=False, safe_mode=False)
 
 # Fungsi untuk melakukan prediksi
 def predict_species(img):
     # Praproses gambar
-    img = img.resize((224, 224))  # Mengubah ukuran gambar
+    img = img.resize((224, 224,3))  # Mengubah ukuran gambar
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     img_array /= 255.0
@@ -125,6 +125,7 @@ elif selected_input_option == 'URL Gambar':
             st.error(f"Error: {e}")
 else:
     st.warning('Silakan Pilih Salah Satu Jenis Inputan Gambar.')
+
 
 
 
